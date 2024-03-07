@@ -42,7 +42,7 @@ export const ShipmentDetailInfoGrid: FC<ShipmentDetailInfoGridProps> = ({
   ];
 
   return (
-    <Grid templateColumns="40% 60%" columnGap="20px" rowGap="20px">
+    <Grid templateColumns="40% 60%" columnGap="20px" rowGap="20px" alignItems="start">
       {infoMap.map((item, index) => (
         <Fragment key={index}>
           <GridItem>
@@ -54,7 +54,7 @@ export const ShipmentDetailInfoGrid: FC<ShipmentDetailInfoGridProps> = ({
             {item.label === 'Status' ? (
               <Tag
                 data-testid={item.dataTestid}
-                size="sm"
+                size="md"
                 variant="outline"
                 colorScheme={getShipmentStatusColor(shipment.status)}
               >
