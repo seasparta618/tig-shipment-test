@@ -5,6 +5,7 @@ import { Shipment } from '~/types/shipment';
 import { ShipmentList } from './shipmentList/ShipmentList';
 import styles from './shipment-page.module.css';
 import { ZeroContentState } from '~/components/common/contentStates/ZeroContentState';
+import { ShipmentDetailPage } from './shipmentDetail/ShipmentDetail';
 
 export const ShipmentPage: FC = () => {
   // this part should be replaced later by useQuery & useEffect to graphQuery from api
@@ -15,9 +16,16 @@ export const ShipmentPage: FC = () => {
   const [selectedShipment, setSelectedShipment] = useState<Shipment | null>(
     null
   );
+  const [isDetailPageShown, setIsDetailPageShown] = useState<boolean>(false);
 
-  const onShipmentItemClick = (shipment: Shipment) => {
-    setSelectedShipment(shipment);
+  const onShipmentItemClick = (shipmentItem: Shipment) => {
+    setIsDetailPageShown(true);
+    setSelectedShipment(shipmentItem);
+  };
+
+  const onShipmentDetailModalClose = () => {
+    setIsDetailPageShown(false);
+    setSelectedShipment(null);
   };
 
   return (
@@ -32,7 +40,14 @@ export const ShipmentPage: FC = () => {
         ) : (
           <ZeroContentState />
         )}
-      </Box>{' '}
+      </Box>
+      {selectedShipment ? (
+        <ShipmentDetailPage
+          isModalShown={isDetailPageShown}
+          onClose={onShipmentDetailModalClose}
+          shipment={selectedShipment}
+        />
+      ) : null}
     </div>
   );
 };

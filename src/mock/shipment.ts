@@ -157,7 +157,7 @@ export const mockShipmentData = (): Shipment[] => {
 };
 
 // mock function to generate bunch of tracking event data to test
-export const generateUnknownRecord = (trackingId: string): TrackingEvent[] => {
+export const mockUnknownRecord = (trackingId: string): TrackingEvent[] => {
   return [
     {
       id: '1',
@@ -170,9 +170,7 @@ export const generateUnknownRecord = (trackingId: string): TrackingEvent[] => {
   ];
 };
 
-export const generateInTransicRecord = (
-  trackingId: string
-): TrackingEvent[] => {
+export const mockInTransicRecord = (trackingId: string): TrackingEvent[] => {
   return [
     {
       id: '1',
@@ -193,9 +191,7 @@ export const generateInTransicRecord = (
   ];
 };
 
-export const generateDeliveredRecords = (
-  trackingId: string
-): TrackingEvent[] => {
+export const mockDeliveredRecords = (trackingId: string): TrackingEvent[] => {
   return [
     {
       id: '1',
