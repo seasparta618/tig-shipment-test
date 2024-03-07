@@ -8,7 +8,6 @@ import { mockShipmentData } from '~/mock/shipment'; // Assuming your mock data i
 
 describe('ShipmentList Component', () => {
   const mockOnShipmentItemClick = jest.fn();
-
   test('renders shipment list', () => {
     render(
       <ShipmentList
