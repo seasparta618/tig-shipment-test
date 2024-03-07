@@ -46,7 +46,7 @@ export const ShipmentDetailInfoGrid: FC<ShipmentDetailInfoGridProps> = ({
       {infoMap.map((item, index) => (
         <Fragment key={index}>
           <GridItem>
-            <Text size="xs" color="gray.400">
+            <Text size="xs" color="gray.500">
               {item.label}
             </Text>
           </GridItem>

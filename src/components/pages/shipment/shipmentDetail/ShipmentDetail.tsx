@@ -10,6 +10,7 @@ import {
   DrawerOverlay,
   Flex,
   Heading,
+  Text,
   ModalCloseButton,
   useBreakpointValue,
 } from '@chakra-ui/react';
@@ -19,6 +20,7 @@ import { Shipment, TrackingEvent } from '~/types/shipment';
 import styles from './shipment-detail.module.css';
 import { SectionAccordionButton } from './SectionAccordionButton';
 import { ShipmentDetailInfoGrid } from './ShipmentDetailInfoGrid';
+import { TrackingHistory } from './TrackingHistory';
 
 interface ShipmentDetailPageProps {
   isModalShown: boolean;
@@ -93,6 +95,24 @@ const ShipmentDetailPageBody: FC<ShipmentDetailBodyProps> = ({
           </h2>
           <AccordionPanel>
             <ShipmentDetailInfoGrid shipment={shipment} />
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+      <Accordion defaultIndex={[0, 1]} allowMultiple>
+        <AccordionItem borderTop="0px">
+          <h2>
+            <SectionAccordionButton text={'TRACKING HISTORY'} />
+          </h2>
+          <AccordionPanel>
+            {trackingEvents.length ? (
+              <Box className={styles.trackingHistoryContainer}>
+                <TrackingHistory trackingEvents={trackingEvents} />
+              </Box>
+            ) : (
+              <Flex>
+                <Text>No Tracking History Available...</Text>
+              </Flex>
+            )}
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
