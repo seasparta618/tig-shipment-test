@@ -13,13 +13,13 @@ describe('ShipmentItem Component', () => {
 
   test('renders shipment item', () => {
     render(
-        <Table>
+      <Table>
         <Tbody>
-        <ShipmentItem
-          shipmentItem={firstShipment}
-          onClick={mockOnClick}
-          isSelected={false}
-        />
+          <ShipmentItem
+            shipmentItem={firstShipment}
+            onClick={mockOnClick}
+            isSelected={false}
+          />
         </Tbody>
       </Table>
     );
@@ -33,11 +33,11 @@ describe('ShipmentItem Component', () => {
     render(
       <Table>
         <Tbody>
-        <ShipmentItem
-          shipmentItem={firstShipment}
-          onClick={mockOnClick}
-          isSelected={false}
-        />
+          <ShipmentItem
+            shipmentItem={firstShipment}
+            onClick={mockOnClick}
+            isSelected={false}
+          />
         </Tbody>
       </Table>
     );
