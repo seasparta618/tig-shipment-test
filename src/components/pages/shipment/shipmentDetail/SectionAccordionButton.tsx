@@ -1,19 +1,19 @@
 import { AccordionButton, AccordionIcon, Flex, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-interface ShipmentAccordionButtonProps {
+interface SectionAccordionButtonProps {
   text: string;
 }
 
 // reusable button
-export const ShipmentAccordionButton: FC<ShipmentAccordionButtonProps> = ({
+export const SectionAccordionButton: FC<SectionAccordionButtonProps> = ({
   text,
 }) => {
   return (
     <AccordionButton>
       <Flex justify="space-between" align="center" width="100%">
         <Text
-          fontSize="12px"
+          fontSize="md"
           fontWeight="600"
           lineHeight="16px"
           color={'gray.500'}

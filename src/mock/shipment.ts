@@ -9,7 +9,7 @@ export const mockShipmentData = (): Shipment[] => {
       status: 'Delivered',
       statusSeverity: 'Success',
       deliveredTime: '2023-10-20T14:30:00Z',
-      lastUpdate: '2023-10-20T14:30:00Z',
+      lastUpdate: '2023-10-19T14:30:00Z',
       deliveryAddress: '123 Main Street, Sydney, NSW, 2000, Australia',
       totalTransit: '2 days',
     },

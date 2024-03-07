@@ -1,8 +1,14 @@
 import {
+    Accordion,
+    AccordionItem,
+    AccordionPanel,
+    Box,
   Drawer,
+  DrawerBody,
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
+  Flex,
   Heading,
   ModalCloseButton,
   useBreakpointValue,
@@ -11,6 +17,8 @@ import { FC, useState } from 'react';
 import { mockDeliveredRecords } from '~/mock/shipment';
 import { Shipment, TrackingEvent } from '~/types/shipment';
 import styles from './shipment-detail.module.css';
+import { SectionAccordionButton } from './SectionAccordionButton';
+import { ShipmentDetailInfoGrid } from './ShipmentDetailInfoGrid';
 
 interface ShipmentDetailPageProps {
   isModalShown: boolean;
@@ -39,6 +47,10 @@ export const ShipmentDetailPage: FC<ShipmentDetailPageProps> = ({
       <DrawerOverlay />
       <DrawerContent>
         <ShipmentDetailPageHeader trackingId={shipment.trackingId} />
+        <ShipmentDetailPageBody
+            trackingEvents={trackingEvents}
+            shipment={shipment}
+          />
       </DrawerContent>
     </Drawer>
   );
@@ -62,3 +74,29 @@ const ShipmentDetailPageHeader: FC<ShipmentDetailHeaderProps> = ({
     </DrawerHeader>
   );
 };
+
+interface ShipmentDetailBodyProps {
+    trackingEvents: TrackingEvent[];
+    shipment: Shipment;
+  }
+  
+  const ShipmentDetailPageBody: FC<ShipmentDetailBodyProps> = ({
+    trackingEvents,
+    shipment,
+  }) => {
+    return (
+      <DrawerBody padding="20px">
+        <Accordion defaultIndex={[0, 1]} allowMultiple>
+          <AccordionItem borderTop="0px">
+            <h2>
+              <SectionAccordionButton text={'SHIPMENT'} />
+            </h2>
+            <AccordionPanel>
+              <ShipmentDetailInfoGrid shipment={shipment} />
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </DrawerBody>
+    );
+  };
+  
