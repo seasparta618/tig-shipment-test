@@ -20,7 +20,7 @@ export const ZeroContentState: FC<ZeroContentStateProps> = ({
           <Text fontSize="2xl" color="gray.900">
             {text}
           </Text>
-          </>
+        </>
       )}
     </Box>
   );
