@@ -8,7 +8,7 @@ import { mockShipmentData } from '~/mock/shipment';
 import { formatDate } from 'date-fns/format';
 import '@testing-library/jest-dom';
 
-/* eslint-disable testing-library/no-node-access, testing-library/no-container */
+/* eslint-check-disable testing-library/no-node-access, testing-library/no-container */
 describe('ShipmentDetailInfoGrid Component', () => {
   const firstShipment = mockShipmentData()[0];
 

@@ -11,3 +11,28 @@
   align-items: center;
   border: 1px solid var(--chakra-colors-gray-100);
 }
+
+.stepper {
+  padding-bottom: 40px;
+  width: 100%;
+}
+
+.stepper:last-of-type {
+  padding-bottom: 0;
+}
+
+.trackingHistoryContainer {
+  border-radius: 5px;
+  padding: 18px 8px;
+  border: 1px solid var(--chakra-colors-gray-200);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.infoBox {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
