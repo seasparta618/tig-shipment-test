@@ -34,8 +34,12 @@ export const ShipmentItem: FC<ShipmentItemProps> = ({
       bg={isSelected ? selectedBg : 'transparent'}
     >
       <Td maxWidth={{ base: 'auto', md: '300px' }} className={styles.textBox}>
-        <Text fontSize={'sm'}>{shipmentItem.trackingId}</Text>
-        <Text fontSize="xs">Created:{formatDate(shipmentItem.lastUpdate)}</Text>
+        <Text fontSize={'sm'} fontWeight={600}>
+          {shipmentItem.trackingId}
+        </Text>
+        <Text fontSize="xs">
+          Created: {formatDate(shipmentItem.lastUpdate)}
+        </Text>
       </Td>
       <Td width={{ base: 'auto', md: '75%' }}>
         <Tag

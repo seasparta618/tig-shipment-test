@@ -4,6 +4,7 @@
     td,
     th {
       padding: 12px 0;
+      text-transform: none;
     }
     td:first-child {
       padding-left: 20px;
