@@ -1,0 +1,8 @@
+.contentBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 600px;
+  justify-content: center;
+  align-items: center;
+}
