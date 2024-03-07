@@ -14,13 +14,16 @@ import {
   ModalCloseButton,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { FC, useState } from 'react';
-import { mockDeliveredRecords } from '~/mock/shipment';
+import { FC, useEffect, useState } from 'react';
 import { Shipment, TrackingEvent } from '~/types/shipment';
 import styles from './shipment-detail.module.css';
 import { SectionAccordionButton } from './SectionAccordionButton';
 import { ShipmentDetailInfoGrid } from './ShipmentDetailInfoGrid';
 import { TrackingHistory } from './TrackingHistory';
+import { GET_TRACKING_EVENTS_QUERY } from '~/graphql/shipment';
+import { useQuery } from '@apollo/client';
+import { LoadingContentState } from '~/components/common/contentStates/LoadingContentState';
+import { ErrorContentState } from '~/components/common/contentStates/ErrorContentState';
 
 interface ShipmentDetailPageProps {
   isModalShown: boolean;
@@ -33,28 +36,39 @@ export const ShipmentDetailPage: FC<ShipmentDetailPageProps> = ({
   onClose,
   shipment,
 }) => {
-  const [trackingEvents, setTrackingEvents] = useState<TrackingEvent[]>(
-    mockDeliveredRecords(shipment.trackingId)
-  );
+  const { loading, error, data } = useQuery(GET_TRACKING_EVENTS_QUERY, {
+    variables: { trackingId: shipment?.trackingId || '' },
+  });
+  const [trackingEvents, setTrackingEvents] = useState<TrackingEvent[]>([]);
+
+  useEffect(() => {
+    if (data?.trackingEvents && data.trackingEvents.length) {
+      setTrackingEvents(data.trackingEvents);
+    }
+  }, [data]);
 
   const drawerSize = useBreakpointValue({ base: 'full', md: 'lg' });
 
   return (
-    <Drawer
-      isOpen={isModalShown}
-      placement="right"
-      size={drawerSize}
-      onClose={onClose}
-    >
-      <DrawerOverlay />
-      <DrawerContent>
-        <ShipmentDetailPageHeader trackingId={shipment.trackingId} />
-        <ShipmentDetailPageBody
-          trackingEvents={trackingEvents}
-          shipment={shipment}
-        />
-      </DrawerContent>
-    </Drawer>
+    <>
+      {loading && <LoadingContentState />}
+      {error && <ErrorContentState />}
+      <Drawer
+        isOpen={isModalShown}
+        placement="right"
+        size={drawerSize}
+        onClose={onClose}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <ShipmentDetailPageHeader trackingId={shipment.trackingId} />
+          <ShipmentDetailPageBody
+            trackingEvents={trackingEvents}
+            shipment={shipment}
+          />
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 };
 

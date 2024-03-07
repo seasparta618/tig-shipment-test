@@ -42,7 +42,12 @@ export const ShipmentDetailInfoGrid: FC<ShipmentDetailInfoGridProps> = ({
   ];
 
   return (
-    <Grid templateColumns="40% 60%" columnGap="20px" rowGap="20px" alignItems="start">
+    <Grid
+      templateColumns="40% 60%"
+      columnGap="20px"
+      rowGap="20px"
+      alignItems="start"
+    >
       {infoMap.map((item, index) => (
         <Fragment key={index}>
           <GridItem>
