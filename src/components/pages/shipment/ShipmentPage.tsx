@@ -18,6 +18,7 @@ export const ShipmentPage: FC = () => {
     null
   );
   const [isDetailPageShown, setIsDetailPageShown] = useState<boolean>(false);
+  const [shipmentsUpdated, setShipmentsUpdated] = useState<boolean>(false);
 
   useEffect(() => {
     if (data?.shipments) {
@@ -27,8 +28,8 @@ export const ShipmentPage: FC = () => {
         // meet requirement, sorted by last update, in case the server returned unordered data
         return dateA.getTime() - dateB.getTime();
       });
-
       setShipments(sortedShipments);
+      setShipmentsUpdated(true);
     }
   }, [data]);
 
@@ -46,7 +47,7 @@ export const ShipmentPage: FC = () => {
     <div className={styles.root}>
       {loading && <LoadingContentState />}
       {error && <ErrorContentState />}
-      {!loading && !error && (
+      {!loading && !error && shipmentsUpdated && (
         <>
           <Box overflowX="auto" className={styles.listContainer}>
             {shipments.length ? (

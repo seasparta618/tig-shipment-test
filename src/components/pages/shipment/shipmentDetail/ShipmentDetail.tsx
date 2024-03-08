@@ -50,27 +50,30 @@ export const ShipmentDetailPage: FC<ShipmentDetailPageProps> = ({
   const drawerSize = useBreakpointValue({ base: 'full', md: 'lg' });
 
   return (
-    <Drawer
-      isOpen={isModalShown}
-      placement="right"
-      size={drawerSize}
-      onClose={onClose}
-    >
-      <DrawerOverlay />
-      <DrawerContent>
+    <>
+      <Drawer
+        isOpen={isModalShown}
+        placement="right"
+        size={drawerSize}
+        onClose={onClose}
+      >
         {loading && <LoadingContentState />}
         {error && <ErrorContentState />}
+
         {!loading && !error && (
           <>
-            <ShipmentDetailPageHeader trackingId={shipment.trackingId} />
-            <ShipmentDetailPageBody
-              trackingEvents={trackingEvents}
-              shipment={shipment}
-            />
+            <DrawerOverlay />
+            <DrawerContent>
+              <ShipmentDetailPageHeader trackingId={shipment.trackingId} />
+              <ShipmentDetailPageBody
+                trackingEvents={trackingEvents}
+                shipment={shipment}
+              />
+            </DrawerContent>
           </>
         )}
-      </DrawerContent>
-    </Drawer>
+      </Drawer>
+    </>
   );
 };
 

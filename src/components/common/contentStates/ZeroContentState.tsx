@@ -13,7 +13,7 @@ export const ZeroContentState: FC<ZeroContentStateProps> = ({
   customizedContent,
 }) => {
   return (
-    <Box className={styles.stateContentBox}>
+    <Box className={styles.stateContentBox} data-testid="zero-content">
       {customizedContent ?? (
         <>
           <NoContentLineIcon />
