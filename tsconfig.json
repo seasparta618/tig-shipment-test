@@ -29,6 +29,6 @@
       "~/mock/*": ["src/mock/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "server.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
