@@ -5,7 +5,7 @@ import { resolve } from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  build: { outDir: 'build', assetsInlineLimit: 4096 },
+  build: { outDir: 'build', assetsInlineLimit: 4096, minify:true },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json', '.css'],
     alias: {
