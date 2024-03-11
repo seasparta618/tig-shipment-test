@@ -54,7 +54,7 @@ export const ShipmentList: FC<ShipmentListProps> = ({
             <Box className={styles.tableTitleBox}>
               <Text>Status</Text>
               <Flex onClick={onStatusSortClick}>
-                <DoubleArrowSortIcon isSortedDesc={isStatusSortingDesc}/>
+                <DoubleArrowSortIcon isSortedDesc={isStatusSortingDesc} />
               </Flex>
             </Box>
           </Th>
