@@ -9,7 +9,7 @@ import { GET_SHIPMENTS } from '~/graphql/shipment';
 import { useQuery } from '@apollo/client';
 import { LoadingContentState } from '~/components/common/contentStates/LoadingContentState';
 import { ErrorContentState } from '~/components/common/contentStates/ErrorContentState';
-import { sortShipments } from '~/utils/shipment';
+import { sortShipmentsByLatestUpdate } from '~/utils/shipment';
 
 export const ShipmentPage: FC = () => {
   const { data, loading, error } = useQuery(GET_SHIPMENTS);
@@ -23,7 +23,9 @@ export const ShipmentPage: FC = () => {
 
   useEffect(() => {
     if (data?.shipments) {
-      setShipments(sortShipments([...data.shipments] as Shipment[]));
+      setShipments(
+        sortShipmentsByLatestUpdate([...data.shipments] as Shipment[])
+      );
       setShipmentsUpdated(true);
     }
   }, [data]);

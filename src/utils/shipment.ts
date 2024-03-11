@@ -38,10 +38,29 @@ export const getTrackingStatusColor = (status: TrackingEventStatus): string => {
   }
 };
 
-export const sortShipments = (shipments: Shipment[], isDesc = true) => {
+export const sortShipmentsByLatestUpdate = (
+  shipments: Shipment[],
+  isDesc = true
+) => {
   return shipments.sort((a, b) => {
     const dateTimeA = new Date(a.lastUpdate).getTime();
     const dateTimeB = new Date(b.lastUpdate).getTime();
     return isDesc ? dateTimeB - dateTimeA : dateTimeA - dateTimeB;
+  });
+};
+
+export const sortShipmentsByStatus = (shipments: Shipment[], isDesc = true) => {
+  const statusPriority: { [key in ShipmentStatus]: number } = {
+    Delivered: 1,
+    'In-Transit': 2,
+    Manifested: 3,
+    Unknown: 4,
+  };
+
+  return shipments.sort((a, b) => {
+    const priorityA = statusPriority[a.status];
+    const priorityB = statusPriority[b.status];
+
+    return isDesc ? priorityB - priorityA : priorityA - priorityB;
   });
 };

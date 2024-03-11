@@ -1,20 +1,13 @@
 import { FC, useState } from 'react';
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Box,
-  Text,
-  Icon,
-  Flex,
-} from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, Box, Text, Flex } from '@chakra-ui/react';
 import { Shipment } from '~/types/shipment';
 import styles from './shipment.module.css';
 import { ShipmentItem } from './ShipmentItem';
 import { DoubleArrowSortIcon } from '~/components/common/icons/icon';
-import { sortShipments } from '~/utils/shipment';
+import {
+  sortShipmentsByLatestUpdate,
+  sortShipmentsByStatus,
+} from '~/utils/shipment';
 
 interface ShipmentListProps {
   shipmentItems: Shipment[];
@@ -31,11 +24,18 @@ export const ShipmentList: FC<ShipmentListProps> = ({
 }) => {
   const [isLatestUpdateSortingDesc, setIsLatestUpdateSortingDesc] =
     useState<boolean>(true);
+  const [isStatusSortingDesc, setIsStatusSortingDesc] = useState<boolean>(true);
 
   const onLatestUpdateSortClick = () => {
     const newSortingStatus = !isLatestUpdateSortingDesc;
-    setShipments(sortShipments(shipmentItems, newSortingStatus));
+    setShipments(sortShipmentsByLatestUpdate(shipmentItems, newSortingStatus));
     setIsLatestUpdateSortingDesc(newSortingStatus);
+  };
+
+  const onStatusSortClick = () => {
+    const newSortingStatus = !isStatusSortingDesc;
+    setShipments(sortShipmentsByStatus(shipmentItems, newSortingStatus));
+    setIsStatusSortingDesc(newSortingStatus);
   };
 
   return (
@@ -53,7 +53,9 @@ export const ShipmentList: FC<ShipmentListProps> = ({
           <Th>
             <Box className={styles.tableTitleBox}>
               <Text>Status</Text>
-              <DoubleArrowSortIcon />
+              <Flex onClick={onStatusSortClick}>
+                <DoubleArrowSortIcon isSortedDesc={isStatusSortingDesc}/>
+              </Flex>
             </Box>
           </Th>
         </Tr>
