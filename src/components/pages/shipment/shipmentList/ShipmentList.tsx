@@ -1,5 +1,15 @@
 import { FC, useState } from 'react';
-import { Table, Thead, Tbody, Tr, Th, Box, Text, Icon, Flex } from '@chakra-ui/react';
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Box,
+  Text,
+  Icon,
+  Flex,
+} from '@chakra-ui/react';
 import { Shipment } from '~/types/shipment';
 import styles from './shipment.module.css';
 import { ShipmentItem } from './ShipmentItem';
@@ -17,26 +27,26 @@ export const ShipmentList: FC<ShipmentListProps> = ({
   shipmentItems = [],
   onShipmentItemClick,
   selectedShipmentId,
-  setShipments
+  setShipments,
 }) => {
-
-  const [isLatestUpdateSortingDesc, setIsLatestUpdateSortingDesc] = useState<boolean>(true);
+  const [isLatestUpdateSortingDesc, setIsLatestUpdateSortingDesc] =
+    useState<boolean>(true);
 
   const onLatestUpdateSortClick = () => {
-    const newSortingStatus = !isLatestUpdateSortingDesc
+    const newSortingStatus = !isLatestUpdateSortingDesc;
     setShipments(sortShipments(shipmentItems, newSortingStatus));
     setIsLatestUpdateSortingDesc(newSortingStatus);
-  }
+  };
 
   return (
     <Table variant="strict" className={styles.table}>
       <Thead>
         <Tr>
           <Th>
-            <Box className={styles.tableTitleBox} >
+            <Box className={styles.tableTitleBox}>
               <Text>Shipment</Text>
               <Flex onClick={onLatestUpdateSortClick}>
-              <DoubleArrowSortIcon isSortedDesc={isLatestUpdateSortingDesc} />
+                <DoubleArrowSortIcon isSortedDesc={isLatestUpdateSortingDesc} />
               </Flex>
             </Box>
           </Th>

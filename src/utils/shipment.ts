@@ -1,5 +1,9 @@
 import { theme } from '@chakra-ui/react';
-import { Shipment, ShipmentStatus, TrackingEventStatus } from '~/types/shipment';
+import {
+  Shipment,
+  ShipmentStatus,
+  TrackingEventStatus,
+} from '~/types/shipment';
 
 // the util function to assign the tag theme color for status
 export const getShipmentStatusColor = (status: ShipmentStatus): string => {
@@ -35,9 +39,9 @@ export const getTrackingStatusColor = (status: TrackingEventStatus): string => {
 };
 
 export const sortShipments = (shipments: Shipment[], isDesc = true) => {
-  return shipments.sort((a,b) => {
+  return shipments.sort((a, b) => {
     const dateTimeA = new Date(a.lastUpdate).getTime();
     const dateTimeB = new Date(b.lastUpdate).getTime();
     return isDesc ? dateTimeB - dateTimeA : dateTimeA - dateTimeB;
-  })
-}
+  });
+};
