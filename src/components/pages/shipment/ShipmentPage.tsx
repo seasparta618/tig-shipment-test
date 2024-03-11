@@ -9,6 +9,7 @@ import { GET_SHIPMENTS } from '~/graphql/shipment';
 import { useQuery } from '@apollo/client';
 import { LoadingContentState } from '~/components/common/contentStates/LoadingContentState';
 import { ErrorContentState } from '~/components/common/contentStates/ErrorContentState';
+import { sortShipments } from '~/utils/shipment';
 
 export const ShipmentPage: FC = () => {
   const { data, loading, error } = useQuery(GET_SHIPMENTS);
@@ -22,13 +23,7 @@ export const ShipmentPage: FC = () => {
 
   useEffect(() => {
     if (data?.shipments) {
-      const sortedShipments = [...data.shipments].sort((a, b) => {
-        const dateA = new Date(a.lastUpdate);
-        const dateB = new Date(b.lastUpdate);
-        // meet requirement, sorted by last update, in case the server returned unordered data
-        return dateA.getTime() - dateB.getTime();
-      });
-      setShipments(sortedShipments);
+      setShipments(sortShipments([...data.shipments] as Shipment[]));
       setShipmentsUpdated(true);
     }
   }, [data]);
@@ -55,6 +50,7 @@ export const ShipmentPage: FC = () => {
                 shipmentItems={shipments}
                 onShipmentItemClick={onShipmentItemClick}
                 selectedShipmentId={selectedShipment ? selectedShipment.id : ''}
+                setShipments={setShipments}
               />
             ) : (
               <ZeroContentState />

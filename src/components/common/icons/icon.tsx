@@ -92,7 +92,7 @@ export const CompletedIcon: FC<IconProps> = ({ size }) => {
 };
 CompletedIcon.defaultProps = defaultLineIconProps;
 
-export const DoubleArrowSortIcon = ({ isSortingUp = false }) => {
+export const DoubleArrowSortIcon = ({ isSortedDesc = true }) => {
   const activeColor = theme.colors.purple[700];
   const inactiveColor = theme.colors.gray[300];
 
@@ -106,11 +106,11 @@ export const DoubleArrowSortIcon = ({ isSortingUp = false }) => {
     >
       <path
         d="M12 6L16 10H8L12 6Z"
-        fill={isSortingUp ? activeColor : inactiveColor}
+        fill={isSortedDesc ? inactiveColor : activeColor}
       />
       <path
         d="M12 18L8 14H16L12 18Z"
-        fill={isSortingUp ? inactiveColor : activeColor}
+        fill={isSortedDesc ? activeColor : inactiveColor}
       />
     </svg>
   );
